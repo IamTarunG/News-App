@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import PropTypes from "prop-types";
-
+import Spinner from "../Components/Spinner";
 export class Ne extends Component {
   capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -93,9 +93,7 @@ export class Ne extends Component {
         </h1>
         {this.state.loading || this.state.New === null ? (
           <div>
-            <div className="spinner-border text-primary" role="status">
-              <span className="sr-only"></span>
-            </div>
+            <Spinner />
           </div>
         ) : (
           <div>
