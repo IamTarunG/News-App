@@ -6,7 +6,7 @@ import Ne from "./Components/Ne";
 import Nav from "./Components/Nav";
 
 export default class App extends Component {
-  pageSize = 20;
+  pageSize = 10;
   render() {
     return (
       <Router>
