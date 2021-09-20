@@ -29,12 +29,18 @@ function Ne(props) {
   };
   useEffect(() => {
     updateNews();
+    // eslint-disable-next-line
   }, []);
 
   const fetchMoreData = async () => {
+    let url = `https://newsapi.org/v2/top-headlines?country=${
+      props.country
+    }&category=${props.category}&category=${
+      props.category
+    }&apiKey=92f1f81f65ce441ab89108e92a93208d&category=technology&page=${
+      page + 1
+    }&pageSize=${props.pageSize}`;
     setPage(page + 1);
-
-    let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&category=${props.category}&apiKey=92f1f81f65ce441ab89108e92a93208d&category=technology&page=${page}&pageSize=${props.pageSize}`;
     let res = await fetch(url);
     let data = await res.json();
     setNew(New.concat(data.articles));
@@ -43,7 +49,9 @@ function Ne(props) {
 
   return (
     <div className="container my-3">
-      <h1>New Monkey Top {capitalizeFirstLetter(props.category)} Headlines</h1>
+      <h1 style={{ marginTop: "90px" }}>
+        New Monkey Top {capitalizeFirstLetter(props.category)} Headlines
+      </h1>
       {loading || New === null ? (
         <div>
           <Spinner />
