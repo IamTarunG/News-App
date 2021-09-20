@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function Nav() {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <Link className="navbar-brand mx-3" to="/">
           NewsMonkey
         </Link>
