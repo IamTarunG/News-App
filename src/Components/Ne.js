@@ -32,12 +32,15 @@ export class Ne extends Component {
     )} - NewsMonkey`;
   }
   async componentDidMount() {
+    this.props.setProgress(10);
     this.setState({
       loading: true,
     });
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&category=${this.props.category}&apiKey=92f1f81f65ce441ab89108e92a93208d&category=technology&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     let res = await fetch(url);
+    this.props.setProgress(30);
     let data = await res.json();
+    this.props.setProgress(70);
 
     this.setState({
       loading: false,
@@ -45,6 +48,7 @@ export class Ne extends Component {
       page: this.state.page,
       totalResults: data.totalResults,
     });
+    this.props.setProgress(100);
   }
   fetchMoreData = async () => {
     this.setState({
@@ -74,66 +78,70 @@ export class Ne extends Component {
           </div>
         ) : (
           <div>
-            <InfiniteScroll
-              dataLength={this.state.New.length}
-              next={this.fetchMoreData}
-              hasMore={this.state.New.length !== this.state.totalResults}
-              loader={<Spinner />}
-            >
-              <div className="row">
-                {this.state.New.map((ele) => {
-                  return (
-                    <div className="col-md-3" key={ele.url}>
-                      <span
-                        className="badge bg-danger"
-                        style={{ margin: "5px", padding: "5px" }}
-                      >
-                        {ele.source.name}
-                      </span>
-                      <Card>
-                        <Card.Img
-                          variant="top"
-                          src={
-                            ele.urlToImage === null
-                              ? "https://www.sammobile.com/wp-content/uploads/2021/09/Galaxy-S21-One-UI-4.0-Android-12-beta-720x405.jpg"
-                              : ele.urlToImage
-                          }
-                        />
-                        <Card.Body>
-                          <Card.Title>{ele.title}</Card.Title>
-                          <Card.Text as="div">
-                            {ele.description === null ? (
-                              <div>
-                                Lorem ipsum, dolor sit amet consectetur
-                                adipisicing elit. Saepe voluptate libero magni,
-                                nemo deleniti quaerat!
-                              </div>
-                            ) : (
-                              ele.description
-                            )}
-                          </Card.Text>
-                          <p className="card-text">
-                            <small className="text-muted">
-                              By {ele.author === null ? "Unknown" : ele.author}{" "}
-                              published at{" "}
-                              {new Date(ele.publishedAt).toUTCString()}
-                            </small>
-                          </p>
-                          <Button
-                            variant="primary"
-                            href={ele.url}
-                            target="_blank"
-                            className="btn-sm"
-                          >
-                            Read More
-                          </Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-                  );
-                })}
-              </div>
-            </InfiniteScroll>
+            <div className="container">
+              <InfiniteScroll
+                style={{ overflow: "hidden" }}
+                dataLength={this.state.New.length}
+                next={this.fetchMoreData}
+                hasMore={this.state.New.length !== this.state.totalResults}
+                loader={<Spinner />}
+              >
+                <div className="row">
+                  {this.state.New.map((ele) => {
+                    return (
+                      <div className="col-md-3" key={ele.url}>
+                        <span
+                          className="badge bg-danger"
+                          style={{ margin: "5px", padding: "5px" }}
+                        >
+                          {ele.source.name}
+                        </span>
+                        <Card>
+                          <Card.Img
+                            variant="top"
+                            src={
+                              ele.urlToImage === null
+                                ? "https://www.sammobile.com/wp-content/uploads/2021/09/Galaxy-S21-One-UI-4.0-Android-12-beta-720x405.jpg"
+                                : ele.urlToImage
+                            }
+                          />
+                          <Card.Body>
+                            <Card.Title>{ele.title}</Card.Title>
+                            <Card.Text as="div">
+                              {ele.description === null ? (
+                                <div>
+                                  Lorem ipsum, dolor sit amet consectetur
+                                  adipisicing elit. Saepe voluptate libero
+                                  magni, nemo deleniti quaerat!
+                                </div>
+                              ) : (
+                                ele.description
+                              )}
+                            </Card.Text>
+                            <p className="card-text">
+                              <small className="text-muted">
+                                By{" "}
+                                {ele.author === null ? "Unknown" : ele.author}{" "}
+                                published at{" "}
+                                {new Date(ele.publishedAt).toUTCString()}
+                              </small>
+                            </p>
+                            <Button
+                              variant="primary"
+                              href={ele.url}
+                              target="_blank"
+                              className="btn-sm"
+                            >
+                              Read More
+                            </Button>
+                          </Card.Body>
+                        </Card>
+                      </div>
+                    );
+                  })}
+                </div>
+              </InfiniteScroll>
+            </div>
           </div>
         )}
       </div>
