@@ -22,7 +22,7 @@ export default function App() {
             <Ne
               setProgress={setProgress}
               pageSize={pageSize}
-              country="us"
+              country="in"
               category="general"
             />
           </Route>
@@ -30,7 +30,7 @@ export default function App() {
             <Ne
               setProgress={setProgress}
               pageSize={pageSize}
-              country="us"
+              country="in"
               category="business"
             />
           </Route>
@@ -38,7 +38,7 @@ export default function App() {
             <Ne
               setProgress={setProgress}
               pageSize={pageSize}
-              country="us"
+              country="in"
               category="entertainment"
             />
           </Route>
@@ -46,7 +46,7 @@ export default function App() {
             <Ne
               setProgress={setProgress}
               pageSize={pageSize}
-              country="us"
+              country="in"
               category="sports"
             />
           </Route>
@@ -54,7 +54,7 @@ export default function App() {
             <Ne
               setProgress={setProgress}
               pageSize={pageSize}
-              country="us"
+              country="in"
               category="science"
             />
           </Route>
@@ -62,7 +62,7 @@ export default function App() {
             <Ne
               setProgress={setProgress}
               pageSize={pageSize}
-              country="us"
+              country="in"
               category="technology"
             />
           </Route>
@@ -70,7 +70,7 @@ export default function App() {
             <Ne
               setProgress={setProgress}
               pageSize={pageSize}
-              country="us"
+              country="in"
               category="health"
             />
           </Route>
