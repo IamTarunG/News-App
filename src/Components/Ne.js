@@ -36,7 +36,7 @@ export class Ne extends Component {
     this.setState({
       loading: true,
     });
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&category=${this.props.category}&apiKey=92f1f81f65ce441ab89108e92a93208d&category=technology&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&category=${this.props.category}&apiKey={API_KEY}&category=technology&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     let res = await fetch(url);
     this.props.setProgress(30);
     let data = await res.json();
@@ -54,7 +54,7 @@ export class Ne extends Component {
     this.setState({
       page: this.state.page + 1,
     });
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&category=${this.props.category}&apiKey=92f1f81f65ce441ab89108e92a93208d&category=technology&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&category=${this.props.category}&apiKey={API_KEY}&category=technology&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     let res = await fetch(url);
     let data = await res.json();
 
